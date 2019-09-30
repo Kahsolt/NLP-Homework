@@ -1,0 +1,9 @@
+# project meta
+.vscode
+
+# python bytecode
+__pycache__/
+
+# data
+corpus/
+model/

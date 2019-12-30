@@ -4,6 +4,12 @@
 # python bytecode
 __pycache__/
 
+# jupyter cache
+.ipynb_checkpoints
+
 # data
 corpus/
 model/
+
+# the refered project (github repo) 
+Automated-Essay-Scoring

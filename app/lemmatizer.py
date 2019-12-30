@@ -16,6 +16,8 @@ IGNORE_CASE = True
 ROOTFORM_RELOCATE = False
 # magic number to decide where use entropy trcik (no empirics, just magic
 ENTROPY_THRESH = 8.0
+# shell cmd mark
+EXEC_MARK = '\\'
 
 RULES = [
   (r'(.*)ying$', r'\1ie'),
@@ -183,7 +185,10 @@ def shell(line):
   FLAG_ON = ['on', '1', 'e', 'enable', 'y', 'yes', 't', 'true']
   FLAG_OFF = ['off', '0', 'd', 'disable', 'n', 'no', 'f', 'false']
   
-  cmd, *args = line.lower().split()
+  try:
+    cmd, *args = line.lower().split()
+  except:
+    cmd, *args = None, None
   if cmd in ['i', 'ignorecase']:
     if args:
       global IGNORE_CASE
@@ -213,7 +218,7 @@ def run():
   try:
     while True:
       line = input('>> Quid negoti est: ').strip()
-      if line.startswith('\\'):   # take as shellcmd
+      if line.startswith(EXEC_MARK):   # take as shellcmd
         shell(line[1:])
       else:
         for word in line.split():
